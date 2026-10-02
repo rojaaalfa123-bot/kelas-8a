@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kelas VIII A</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at 10% 20%, #bfdbfe 0px, transparent 120px),
+                radial-gradient(circle at 90% 15%, #bae6fd 0px, transparent 140px),
+                radial-gradient(circle at 85% 85%, #dbeafe 0px, transparent 150px),
+                linear-gradient(135deg, #dbeafe, #f0f9ff);
+
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 30px 15px;
+            color: #222;
+
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.35;
+        }
+
+        body::before {
+            width: 180px;
+            height: 180px;
+            background: #93c5fd;
+            top: -70px;
+            left: -60px;
+        }
+
+        body::after {
+            width: 220px;
+            height: 220px;
+            background: #7dd3fc;
+            bottom: -100px;
+            right: -80px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        h1 {
+            background: rgba(255, 255, 255, 0.92);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px #0002;
+            color: #2563eb;
+            margin-top: 0;
+            border: 1px solid #ffffff;
+        }
+
+        .subjudul {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            background: rgba(255, 255, 255, 0.94);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px #0002;
+            border: 1px solid #ffffff;
+        }
+
+        .menu h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        input {
+            padding: 13px;
+            width: 100%;
+            font-size: 16px;
+            border: 2px solid #dbeafe;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px #3b82f633;
+        }
+
+        button {
+            padding: 12px 30px;
+            margin-top: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 3px 8px #0003;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #hasil {
+            background: rgba(255, 255, 255, 0.94);
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 15px;
+            text-align: left;
+            box-shadow: 0 4px 12px #0002;
+            border: 1px solid #ffffff;
+        }
+
+        #hasil h2 {
+            color: #2563eb;
+            text-align: center;
+            border-bottom: 2px solid #dbeafe;
+            padding-bottom: 10px;
+        }
+
+        #hasil p {
+            line-height: 1.6;
+        }
+
+        #hasil li {
+            margin: 8px 0;
+        }
+
+        .hari {
+            background: #eff6ff;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .kembali {
+            display: block;
+            margin: 20px auto 0;
+            background: #64748b;
+        }
+
+        .kembali:hover {
+            background: #475569;
+        }
+
+        footer {
+            margin-top: 25px;
+            color: #777;
+            font-size: 13px;
+        }
+
+        .hiasan {
+            position: fixed;
+            width: 7px;
+            height: 7px;
+            background: #60a5fa;
+            border-radius: 50%;
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        .titik1 {
+            top: 18%;
+            left: 8%;
+        }
+
+        .titik2 {
+            top: 35%;
+            right: 8%;
+            width: 10px;
+            height: 10px;
+        }
+
+        .titik3 {
+            bottom: 25%;
+            left: 12%;
+            width: 5px;
+            height: 5px;
+        }
+
+        .titik4 {
+            bottom: 12%;
+            right: 15%;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="hiasan titik1"></div>
+<div class="hiasan titik2"></div>
+<div class="hiasan titik3"></div>
+<div class="hiasan titik4"></div>
+
+<div class="container">
+
+    <h1>📚 KELAS VIII A</h1>
+
+    <p class="subjudul">Website Informasi Kelas</p>
+
+    <div class="menu">
+
+        <h2 id="judulMenu">🔎 Mau lihat apa?</h2>
+
+        <input
+            type="text"
+            id="pilihan"
+            placeholder="Ketik pilihan..."
+        >
+
+        <button onclick="lihat()">Lihat</button>
+
+        <p style="font-size: 13px; color: #777;">
+            Ketik: absensi, struktur, piket, atau jadwal
+        </p>
+
+    </div>
+
+    <div id="hasil">
+        <p style="text-align:center;">
+            Silakan pilih informasi yang ingin dilihat.
+        </p>
+    </div>
+
+    <footer>
+        Kelas VIII A • 2026
+    </footer>
+
+</div>
+
+
+<script>
+
+let mode = "";
+
+
+/* ================= FUNGSI UTAMA ================= */
+
+function lihat() {
+
+    let pilihan = document
+        .getElementById("pilihan")
+        .value
+        .toLowerCase()
+        .trim();
+
+    let hasil = document.getElementById("hasil");
+
+
+    /* ===== JIKA MEMILIH JADWAL ===== */
+
+    if (mode == "jadwal") {
+        tampilkanJadwal(pilihan);
+        return;
+    }
+
+
+    /* ===== JIKA MEMILIH JENIS PIKET ===== */
+
+    if (mode == "pilihPiket") {
+
+        if (pilihan == "mbg") {
+
+            mode = "piketMBG";
+
+            document.getElementById("judulMenu").innerHTML =
+                "🍱 Mau lihat piket MBG hari apa?";
+
+            document.getElementById("pilihan").value = "";
+
+            document.getElementById("pilihan").placeholder =
+                "Ketik hari...";
+
+            hasil.innerHTML = `
+                <p style="text-align:center;">
+                    Piket <b>MBG</b> dipilih.<br>
+                    Ketik nama hari, misalnya:
+                    <b>senin</b>
+                </p>
+            `;
+
+        }
+
+        else if (pilihan == "kelas") {
+
+            mode = "piketKelas";
+
+            document.getElementById("judulMenu").innerHTML =
+                "🧹 Mau lihat piket kelas hari apa?";
+
+            document.getElementById("pilihan").value = "";
+
+            document.getElementById("pilihan").placeholder =
+                "Ketik hari...";
+
+            hasil.innerHTML = `
+                <p style="text-align:center;">
+                    Piket <b>Kelas</b> dipilih.<br>
+                    Ketik nama hari, misalnya:
+                    <b>senin</b>
+                </p>
+            `;
+
+        }
+
+        else {
+
+            hasil.innerHTML = `
+                <h2>❌ Pilihan tidak ditemukan</h2>
+
+                <p style="text-align:center;">
+                    Ketik:
+                    <b>mbg</b>
+                    atau
+                    <b>kelas</b>
+                </p>
+            `;
+        }
+
+        return;
+    }
+
+
+    /* ===== JIKA SEDANG MEMILIH HARI PIKET MBG ===== */
+
+    if (mode == "piketMBG") {
+        tampilkanPiketMBG(pilihan);
+        return;
+    }
+
+
+    /* ===== JIKA SEDANG MEMILIH HARI PIKET KELAS ===== */
+
+    if (mode == "piketKelas") {
+        tampilkanPiketKelas(pilihan);
+        return;
+    }
+
+
+    /* ================= ABSENSI ================= */
+
+    if (pilihan == "absensi") {
+
+        hasil.innerHTML = `
+            <h2>📋 Absensi VIII A</h2>
+
+            <ol>
+                <li>Aisyah</li>
+                <li>Finza</li>
+                <li>Arkana</li>
+                <li>Atiqa</li>
+                <li>Bella</li>
+                <li>Dimas</li>
+                <li>Farras</li>
+                <li>Lily</li>
+                <li>Firly</li>
+                <li>Fifi</li>
+                <li>Azzam</li>
+                <li>Karin</li>
+                <li>Kayla</li>
+                <li>Keisya</li>
+                <li>Kirana</li>
+                <li>Fiyyan</li>
+                <li>Alvin</li>
+                <li>Hezkiel</li>
+                <li>Igam</li>
+                <li>Jafas</li>
+                <li>Nizar</li>
+                <li>Alfa</li>
+                <li>Salman</li>
+                <li>Fattah</li>
+                <li>Nadine</li>
+                <li>Zaskya</li>
+                <li>Nandya</li>
+                <li>Afiqa</li>
+                <li>Aldo</li>
+                <li>Satria</li>
+                <li>Yoga</li>
+            </ol>
+
+            <button class="kembali" onclick="kembali()">
+                ← Kembali
+            </button>
+        `;
+    }
+
+
+    /* ================= STRUKTUR ================= */
+
+    else if (pilihan == "struktur") {
+
+        hasil.innerHTML = `
+            <h2>🏫 Struktur Kelas</h2>
+
+            <p><b>Wali Kelas:</b><br>
+            Bu Dina</p>
+
+            <p><b>Ketua Kelas:</b><br>
+            Dimas</p>
+
+            <p><b>Wakil Ketua Kelas:</b><br>
+            Zaskya</p>
+
+            <p><b>Bendahara I-II:</b><br>
+            Fifi, Aisyah</p>
+
+            <p><b>Sekretaris I-II:</b><br>
+            Farras, Kirana</p>
+
+            <p><b>Duta Literasi I-IV:</b><br>
+            Azzam, Lily, Kayla, Igam</p>
+
+            <p><b>Kader UKS I-IV:</b><br>
+            Bella, Alfa, Keisya, Hezkiel</p>
+
+            <p><b>Duta Mushola I-II:</b><br>
+            Yoga, Afiqa</p>
+
+            <p><b>Duta Lingkungan I-II:</b><br>
+            Nadine, Satria</p>
+
+            <p><b>Pass Temenan:</b><br>
+            Firly, Finza</p>
+
+            <button class="kembali" onclick="kembali()">
+                ← Kembali
+            </button>
+        `;
+    }
+
+
+    /* ================= PIKET ================= */
+
+    else if (pilihan == "piket") {
+
+        mode = "pilihPiket";
+
+        document.getElementById("judulMenu").innerHTML =
+            "🧹 Mau lihat piket apa?";
+
+        document.getElementById("pilihan").value = "";
+
+        document.getElementById("pilihan").placeholder =
+            "Ketik kelas atau mbg...";
+
+        hasil.innerHTML = `
+            <p style="text-align:center;">
+                Pilih jenis piket:
+            </p>
+
+            <p style="text-align:center;">
+                🧹 <b>kelas</b><br>
+                🍱 <b>mbg</b>
+            </p>
+        `;
+    }
+
+
+    /* ================= JADWAL ================= */
+
+    else if (pilihan == "jadwal") {
+
+        mode = "jadwal";
+
+        document.getElementById("judulMenu").innerHTML =
+            "📚 Mau lihat jadwal hari apa?";
+
+        document.getElementById("pilihan").value = "";
+
+        document.getElementById("pilihan").placeholder =
+            "Ketik hari...";
+
+        hasil.innerHTML = `
+            <p style="text-align:center;">
+                Ketik nama hari, misalnya:
+                <b>senin</b>
+            </p>
+        `;
+    }
+
+
+    /* ================= SALAH ================= */
+
+    else {
+
+        hasil.innerHTML = `
+            <h2>❌ Pilihan tidak ditemukan</h2>
+
+            <p style="text-align:center;">
+                Silakan ketik salah satu:
+            </p>
+
+            <p style="text-align:center;">
+                <b>absensi</b><br>
+                <b>struktur</b><br>
+                <b>piket</b><br>
+                <b>jadwal</b>
+            </p>
+        `;
+    }
+}
+
+
+/* ================= FUNGSI JADWAL ================= */
+
+function tampilkanJadwal(hari) {
+
+    let hasil = document.getElementById("hasil");
+
+    let data = {
+
+        senin: `
+            <h2>📚 Jadwal Senin</h2>
+            <ol>
+                <li>SenBud</li>
+                <li>MTK</li>
+                <li>BIG</li>
+            </ol>
+        `,
+
+        selasa: `
+            <h2>📚 Jadwal Selasa</h2>
+            <ol>
+                <li>PJOK</li>
+                <li>BINDO</li>
+                <li>IPA</li>
+            </ol>
+        `,
+
+        rabu: `
+            <h2>📚 Jadwal Rabu</h2>
+            <ol>
+                <li>IPS</li>
+                <li>BADER</li>
+                <li>MTK</li>
+                <li>PKN</li>
+            </ol>
+        `,
+
+        kamis: `
+            <h2>📚 Jadwal Kamis</h2>
+            <ol>
+                <li>INFOR</li>
+                <li>BIG</li>
+                <li>BK</li>
+                <li>PAI</li>
+            </ol>
+        `,
+
+        jumat: `
+            <h2>📚 Jadwal Jumat</h2>
+            <ol>
+                <li>IPS</li>
+                <li>IPA</li>
+            </ol>
+        `,
+
+        sabtu: `
+            <h2>📚 Jadwal Sabtu</h2>
+            <ol>
+                <li>BINDO</li>
+            </ol>
+        `
+    };
+
+    if (data[hari]) {
+
+        hasil.innerHTML = data[hari] + `
+            <button class="kembali" onclick="kembali()">
+                ← Kembali
+            </button>
+        `;
+
+    } else {
+
+        hasil.innerHTML = `
+            <h2>❌ Hari tidak ditemukan</h2>
+
+            <p style="text-align:center;">
+                Ketik:
+                <b>senin</b>,
+                <b>selasa</b>,
+                <b>rabu</b>,
+                <b>kamis</b>,
+                <b>jumat</b>,
+                atau
+                <b>sabtu</b>
+            </p>
+        `;
+    }
+}
+
+
+/* ================= PIKET MBG ================= */
+
+function tampilkanPiketMBG(hari) {
+
+    let hasil = document.getElementById("hasil");
+
+    let data = {
+
+        senin: `
+            <h2>🍱 Piket MBG Senin</h2>
+            <p>
+                Arkana, Azzam, Farras, Firly,
+                Kirana, Nadine
+            </p>
+        `,
+
+        selasa: `
+            <h2>🍱 Piket MBG Selasa</h2>
+            <p>
+                Finza, Aldo, Alfa, Keisya,
+                Afiqa, Aisyah
+            </p>
+        `,
+
+        rabu: `
+            <h2>🍱 Piket MBG Rabu</h2>
+            <p>
+                Hezkiel, Fiyyan, Jafas, Nizar,
+                Kayla, Atiqa, Karin
+            </p>
+        `,
+
+        kamis: `
+            <h2>🍱 Piket MBG Kamis</h2>
+            <p>
+                Salman, Alvin, Fattah, Igam,
+                Lily, Bella
+            </p>
+        `,
+
+        jumat: `
+            <h2>🍱 Piket MBG Jumat</h2>
+            <p>
+                Dimas, Yoga, Satria, Fifi,
+                Nandya, Zaskya
+            </p>
+        `
+    };
+
+    if (data[hari]) {
+
+        hasil.innerHTML = data[hari] + `
+            <button class="kembali" onclick="kembali()">
+                ← Kembali
+            </button>
+        `;
+
+    } else {
+
+        hasil.innerHTML = `
+            <h2>❌ Hari tidak ditemukan</h2>
+
+            <p style="text-align:center;">
+                Piket MBG hanya tersedia:
+                <b>senin</b>,
+                <b>selasa</b>,
+                <b>rabu</b>,
+                <b>kamis</b>,
+                atau
+                <b>jumat</b>
+            </p>
+        `;
+    }
+}
+
+
+/* ================= PIKET KELAS ================= */
+
+function tampilkanPiketKelas(hari) {
+
+    let hasil = document.getElementById("hasil");
+
+    let data = {
+
+        senin: `
+            <h2>🧹 Piket Kelas Senin</h2>
+            <p>
+                Aisyah, Zaskya, Farras,
+                Igam, Fattah, Alfa
+            </p>
+        `,
+
+        selasa: `
+            <h2>🧹 Piket Kelas Selasa</h2>
+            <p>
+                Atiqa, Finza, Nadine,
+                Nandya, Jafas, Aldo
+            </p>
+        `,
+
+        rabu: `
+            <h2>🧹 Piket Kelas Rabu</h2>
+            <p>
+                Bella, Kirana, Azzam,
+                Afiqa, Satria, Salman
+            </p>
+        `,
+
+        kamis: `
+            <h2>🧹 Piket Kelas Kamis</h2>
+            <p>
+                Lily, Keisya, Arkana,
+                Fiyyan, Nizar, Yoga
+            </p>
+        `,
+
+        jumat: `
+            <h2>🧹 Piket Kelas Jumat</h2>
+            <p>
+                Firly, Kayla, Alvin
+            </p>
+        `,
+
+        sabtu: `
+            <h2>🧹 Piket Kelas Sabtu</h2>
+            <p>
+                Dimas, Fifi, Karin, Hezkiel
+            </p>
+        `
+    };
+
+    if (data[hari]) {
+
+        hasil.innerHTML = data[hari] + `
+            <button class="kembali" onclick="kembali()">
+                ← Kembali
+            </button>
+        `;
+
+    } else {
+
+        hasil.innerHTML = `
+            <h2>❌ Hari tidak ditemukan</h2>
+
+            <p style="text-align:center;">
+                Piket Kelas tersedia:
+                <b>senin</b>,
+                <b>selasa</b>,
+                <b>rabu</b>,
+                <b>kamis</b>,
+                <b>jumat</b>,
+                atau
+                <b>sabtu</b>
+            </p>
+        `;
+    }
+}
+
+
+/* ================= KEMBALI ================= */
+
+function kembali() {
+
+    mode = "";
+
+    document.getElementById("judulMenu").innerHTML =
+        "🔎 Mau lihat apa?";
+
+    document.getElementById("pilihan").value = "";
+
+    document.getElementById("pilihan").placeholder =
+        "Ketik pilihan...";
+
+    document.getElementById("hasil").innerHTML = `
+        <p style="text-align:center;">
+            Silakan pilih informasi yang ingin dilihat.
+        </p>
+    `;
+
+    document.getElementById("pilihan").focus();
+}
+
+</script>
+
+</body>
+</html>
